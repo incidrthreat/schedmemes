@@ -23,7 +23,7 @@ def lambda_handler(event, context):
     client = discord.Client(intents=intents)
     @client.event
     async def on_ready():
-        channel = client.get_channel(int(os.getenv('CHANNEL_ID_TEST')))
+        channel = client.get_channel(int(os.getenv('CHANNEL_ID')))
         # image_data = requests.get(image_url).content
         async with aiohttp.ClientSession() as session: # creates session
             async with session.get(image_url) as resp: # gets image from url
@@ -34,7 +34,4 @@ def lambda_handler(event, context):
 
     client.run(f"{os.getenv('BOT_TOKEN')}")
 
-    return {
-        'statusCode': 200,
-        'body': json.dumps('Image posted to Discord!')
-    }
+    return
