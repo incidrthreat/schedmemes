@@ -37,5 +37,5 @@ def lambda_handler(event, context):
 
     return {
         'statusCode': 200,
-        'body': json.dumps(f"Successful posted: {image_url}")
+        'body': json.dumps(f"Successfully posted: {image_url}")
     }
