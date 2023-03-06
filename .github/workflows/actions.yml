@@ -15,4 +15,4 @@ jobs:
           aws_secret_access_key: ${{ secrets.AWS_SECRET_KEY }}
           aws_region: ${{ secrets.AWS_REGION }}
           function_name: schedMemes
-          source: images.json
+          source: images.json lambda_function.py
