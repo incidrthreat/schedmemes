@@ -29,7 +29,7 @@ def lambda_handler(event, context):
             async with session.get(image_url) as resp: # gets image from url
                 img = await resp.read() # reads image from response
                 with io.BytesIO(img) as file: # converts to file-like object
-                    await channel.send(file=discord.File(file, "sched_meme"))
+                    await channel.send(file=discord.File(file, "sched_meme.jpg"))
         await client.close()
 
     client.run(f"{os.getenv('BOT_TOKEN')}")
