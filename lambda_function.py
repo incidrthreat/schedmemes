@@ -17,7 +17,8 @@ def lambda_handler(event, context):
     else:
         # Select a random image from the list for the current day
         image_url = random.choice(data[current_day])
-    
+    print(image_url)
+
     # Post the image to Discord
     intents = discord.Intents.default()
     client = discord.Client(intents=intents)
@@ -34,4 +35,7 @@ def lambda_handler(event, context):
 
     client.run(f"{os.getenv('BOT_TOKEN')}")
 
-    return
+    return {
+        'statusCode': 200,
+        'body': json.dumps(f"Successful posted: {image_url}")
+    }
