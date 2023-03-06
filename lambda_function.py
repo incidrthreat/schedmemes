@@ -17,20 +17,21 @@ def lambda_handler(event, context):
     else:
         # Select a random image from the list for the current day
         image_url = random.choice(data[current_day])
-    print(image_url)
 
+    ext = str.split(image_url, ".")[-1]
+    
     # Post the image to Discord
     intents = discord.Intents.default()
     client = discord.Client(intents=intents)
     @client.event
     async def on_ready():
-        channel = client.get_channel(int(os.getenv('CHANNEL_ID')))
+        channel = client.get_channel(int(os.getenv('CHANNEL_ID_TEST')))
         # image_data = requests.get(image_url).content
         async with aiohttp.ClientSession() as session: # creates session
             async with session.get(image_url) as resp: # gets image from url
                 img = await resp.read() # reads image from response
                 with io.BytesIO(img) as file: # converts to file-like object
-                    await channel.send(file=discord.File(file, "sched_meme.jpg"))
+                    await channel.send(file=discord.File(file, f"sched_meme.{ext}"))
         await client.close()
 
     client.run(f"{os.getenv('BOT_TOKEN')}")
