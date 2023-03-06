@@ -1,0 +1,17 @@
+name: Push to AWS Lambda
+on:
+  push
+jobs:
+  lambda:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@main
+      - run: echo "Zipping items for TestFunc"
+      - run: zip TestFunc.zip images.json main.py
+      - uses: stcalica/update-lambda
+        with:
+          package: lambda.zip
+          function-name: TestFunc
+          AWS_REGION: ${{ secrets.AWS_REGION }}
+          AWS_SECRET_ID: ${{ secrets.AWS_SECRET_ID }}
+          AWS_SECRET_KEY: ${{ secrets.AWS_SECRET_KEY }}
