@@ -12,8 +12,6 @@ def lambda_handler(event, context):
     # Get the current day of the week
     day = datetime.today()
     
-
-
     # Odd or Even week
     week = datetime.today().isocalendar()[1]
     
