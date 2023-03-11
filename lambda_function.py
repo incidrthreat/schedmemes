@@ -8,12 +8,24 @@ def lambda_handler(event, context):
     
     # Get the current day of the week
     current_day = datetime.today().strftime('%A')
+
+    # Get the current day of the week
+    day = datetime.today()
     
+
+
+    # Odd or Even week
     week = datetime.today().isocalendar()[1]
     
     # (odd week !=) or (even week ==)
     if week % 2 == 0 and current_day == "Tuesday":
         image_url = 'https://raw.githubusercontent.com/incidrthreat/schedmemes/main/images/reginald.jpg'
+    # end of April meme
+    elif day.month == 4 and day.day == 30:
+        image_url = 'https://raw.githubusercontent.com/incidrthreat/schedmemes/main/images/gonna_be_may.jpg'
+    # may the 4th be with you meme
+    elif day.month == 5 and day.day == 4:
+        image_url = 'https://raw.githubusercontent.com/incidrthreat/schedmemes/main/images/may_the_fourth.jpg'
     else:
         # Select a random image from the list for the current day
         image_url = random.choice(data[current_day])
